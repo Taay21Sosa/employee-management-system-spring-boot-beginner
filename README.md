@@ -110,6 +110,6 @@ The project may contain code and comments that are not fully optimized. The code
 > Despite these issues, the program is designed to be functional, and it's expected to run without critical errors. This is a temporary state, and future updates will include a thorough code cleanup and optimization process. 🧹
 
 ## ⚖️License.
-[![MIT](https://img.shields.io/cocoapods/l/AFNetworking.svg?style=style&label=License&maxAge=2592000)](../master/LICENSE)
+[![MIT](https://img.shields.io/cocoapods/l/AFNetworking.svg?style=style&label=License&maxAge=2592000)](LICENSE.md)
 
 Copyright (c) 2025-present, Taay21Sosa, T.Monaheng.
