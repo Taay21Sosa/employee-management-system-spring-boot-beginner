@@ -1,8 +1,16 @@
 import {useEffect, useState} from "react";
-import {dummyData} from "../constant/data.js";
+import {listEmployees} from "../service/EmployeeService.js";
 
 const ListEmployee = () => {
     const [employees, setEmployees] = useState([]);
+
+    useEffect(() => {
+        listEmployees().then((response) => {
+            setEmployees(response.data);
+        }).catch((error) => {
+            console.error(error);
+        })
+    })
 
     return (
         <section className="section">
@@ -33,7 +41,7 @@ const ListEmployee = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    {dummyData.map(employee => (
+                    {employees.map(employee => (
                         <tr key={employee.id}>
                             <td>
                                 <p>{employee.id}</p>
