@@ -38,7 +38,7 @@ const ListEmployee = () => {
     }
 
     return (
-        <section className="section">
+        <section className="section scrollbar-hidden">
             <h1>List Of Employees</h1>
 
             <div className="flex justify-end">

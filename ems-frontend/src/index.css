@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+@layer utilities {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .scrollbar-hidden::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .scrollbar-hidden {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+}
+
 @layer components {
     header {
         @apply w-screen absolute top-0 left-0 flex items-center justify-center min-h-[8vh] bg-neutral-950;
@@ -14,7 +27,7 @@
     }
 
     .section {
-        @apply relative w-screen h-[84.5vh] px-20 py-2 mt-[8vh] overflow-y-auto;
+        @apply relative w-screen h-[84.5vh] px-20 py-2 mt-[8vh] overflow-y-scroll;
 
         h1 {
             @apply text-4xl font-bold text-center mb-1;
@@ -32,7 +45,7 @@
 
         .btn-back {
             @apply absolute top-10 left-25 w-12 h-12 flex items-center justify-center bg-gray-50
-            border-2 border-gray-950 rounded-full hover:bg-gray-200 cursor-pointer;
+            border-2 border-gray-300 rounded-full hover:bg-gray-200 cursor-pointer;
         }
 
         .table-container {
