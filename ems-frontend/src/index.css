@@ -14,7 +14,7 @@
     }
 
     .section {
-        @apply w-screen h-[84.5vh] px-10 py-2 mt-[8vh];
+        @apply relative w-screen h-[84.5vh] px-20 py-2 mt-[8vh] overflow-y-auto;
 
         h1 {
             @apply text-4xl font-bold text-center mb-1;
@@ -28,6 +28,11 @@
             @apply text-white bg-blue-500 mb-4 box-border border border-transparent hover:bg-blue-600
             focus:ring-4 focus:ring-blue-400 shadow-xs font-medium leading-5 rounded-lg text-sm px-4 py-2.5
             focus:outline-none cursor-pointer;
+        }
+
+        .btn-back {
+            @apply absolute top-10 left-25 w-12 h-12 flex items-center justify-center bg-gray-50
+            border-2 border-gray-950 rounded-full hover:bg-gray-200 cursor-pointer;
         }
 
         .table-container {
@@ -62,6 +67,18 @@
                                 @apply block font-sans text-sm antialiased font-normal leading-normal text-gray-900;
                             }
                         }
+
+                        .actions {
+                            @apply flex items-center justify-start gap-10;
+
+                            .btn-edit {
+                                @apply text-blue-600 font-semibold hover:underline cursor-pointer;
+                            }
+
+                            .btn-delete {
+                                @apply text-red-600 font-semibold hover:underline cursor-pointer;
+                            }
+                        }
                     }
                 }
             }
@@ -78,8 +95,17 @@
                 }
 
                 input {
-                    @apply bg-gray-100 border border-gray-300 text-sm rounded-xl focus:ring-gray-400
-                    focus:border-gray-400 block w-full px-3 py-2;
+                    @apply bg-gray-100 border border-gray-300 text-sm rounded-lg focus:ring-gray-500
+                    focus:border-gray-500 focus:outline-hidden block w-full px-3 py-2;
+                }
+
+                .is-invalid {
+                    @apply  border-2 border-red-500 focus:ring-red-400 focus:border-red-400 after:absolute
+                    after:right-1 after:w-4 after:h-4 after:content-['!'] after:text-red-500 after:z-10;
+                }
+
+                .invalid-feedback {
+                    @apply text-red-500;
                 }
             }
 

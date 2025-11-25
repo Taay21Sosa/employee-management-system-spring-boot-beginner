@@ -1,23 +1,48 @@
 import {useEffect, useState} from "react";
-import {listEmployees} from "../service/EmployeeService.js";
+import {deleteEmployee, getEmployee, listEmployees} from "../service/EmployeeService.js";
+import {useNavigate} from "react-router-dom";
 
 const ListEmployee = () => {
     const [employees, setEmployees] = useState([]);
 
+    const navigator = useNavigate();
+
     useEffect(() => {
+        getAllEmployees();
+    }, []);
+
+    function getAllEmployees() {
         listEmployees().then((response) => {
             setEmployees(response.data);
         }).catch((error) => {
             console.error(error);
-        })
-    })
+        });
+    }
+
+    function newEmployee() {
+        navigator("/add-employee");
+    }
+
+    function editEmployee(id) {
+        navigator(`/edit-employee/${id}`);
+    }
+
+    function removeEmployee(id) {
+        console.log(id);
+
+        deleteEmployee(id).then((response) => {
+            getAllEmployees();
+        }).catch((error) => {
+            console.error(error);
+        });
+    }
 
     return (
         <section className="section">
             <h1>List Of Employees</h1>
 
             <div className="flex justify-end">
-                <button className="btn-primary">
+                <button className="btn-primary" onClick={newEmployee}>
                     Add Employee
                 </button>
             </div>
@@ -38,6 +63,9 @@ const ListEmployee = () => {
                         <th>
                             <p>Email</p>
                         </th>
+                        <th>
+                            <p>Actions</p>
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -46,9 +74,19 @@ const ListEmployee = () => {
                             <td>
                                 <p>{employee.id}</p>
                             </td>
-                            <td>{employee.firstName}</td>
-                            <td>{employee.lastName}</td>
-                            <td>{employee.email}</td>
+                            <td>
+                                <p>{employee.firstName}</p>
+                            </td>
+                            <td>
+                                <p>{employee.lastName}</p>
+                            </td>
+                            <td>
+                                <p>{employee.email}</p>
+                            </td>
+                            <td className="actions" >
+                                <button className="btn-edit" onClick={() => editEmployee(employee.id)}>Edit</button>
+                                <button className="btn-delete" onClick={() => removeEmployee(employee.id)}>Delete</button>
+                            </td>
                         </tr>
                     ))}
                     </tbody>
